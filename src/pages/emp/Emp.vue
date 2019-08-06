@@ -20,12 +20,12 @@
 			</div>
 			<el-container style="min-height: 605px; border: 1px solid #eee">
 				<el-aside width="200px" style="background-color: #ececec;">
-					<el-menu :default-openeds="['', '']">
+					<el-menu :default-openeds="['1']">
 						<el-submenu index="1" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-user-solid" style="color: rgb(32, 160, 255);"></i>员工资料</template>
 							<el-menu-item-group>
 								<el-menu-item index="1-1">
-									<router-link to="/emp" tag="li">基本资料</router-link>
+									基本资料
 								</el-menu-item>
 							</el-menu-item-group>
 						</el-submenu>
@@ -47,9 +47,7 @@
 								<el-menu-item index="3-2">
 									<router-link to="/staff" tag="li">员工套账设置</router-link>
 								</el-menu-item>
-								<el-menu-item index="3-3">
-									<router-link to="/salarylist" tag="li">工资表管理</router-link>
-								</el-menu-item>
+								<el-menu-item index="3-3">工资表管理</el-menu-item>
 								<el-menu-item index="3-4">月末处理</el-menu-item>
 								<el-menu-item index="3-5">工资表查询</el-menu-item>
 							</el-menu-item-group>
@@ -79,16 +77,34 @@
 				<el-main>
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 					  <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-					  <el-breadcrumb-item>主页</el-breadcrumb-item>
+					  <el-breadcrumb-item>基本资料</el-breadcrumb-item>
 					</el-breadcrumb>
+					<div class="function">
+						<div class="search">
+							<el-input placeholder="通过员工名搜索员工,记得回车哦..." size="mini" prefix-icon="el-icon-search" v-model="input"></el-input>
+							<el-button type="primary" icon="el-icon-search" size="mini">搜索</el-button>
+						</div>
+						<div class="data">
+							<el-button type="success" icon="el-icon-sort-up" size="mini">导入数据</el-button>
+							<el-button type="success" icon="el-icon-sort-down" size="mini">导出数据</el-button>
+							<el-button type="primary" icon="el-icon-plus" size="mini">添加员工</el-button>
+						</div>
+					</div>
+					<emp-word></emp-word>
+					<div class="page">
+						<div class="page_left"><el-button type="danger" size="small" disabled>批量删除</el-button></div>
+						<div class="page_right">
+							<el-pagination background layout="prev, pager, next" :total="200"></el-pagination>
+						</div>
+					</div>
 				</el-main>
 			</el-container>
-			
 		</div>
 	</div>
 </template>
 
 <script>
+import EmpWord from './components/Word'
 export default {
 	data() {
 		const item = {
@@ -97,8 +113,12 @@ export default {
 			address: '上海市普陀区金沙江路 1518 弄'
 		};
 		return {
+			// tableData: Array(20).fill(item),
 			input:''
 		}
+	},
+	components: {
+		EmpWord,
 	}
 };
 </script>

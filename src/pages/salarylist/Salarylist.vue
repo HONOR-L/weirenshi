@@ -20,7 +20,7 @@
 			</div>
 			<el-container style="min-height: 605px; border: 1px solid #eee">
 				<el-aside width="200px" style="background-color: #ececec;">
-					<el-menu :default-openeds="['', '']">
+					<el-menu :default-openeds="['3']">
 						<el-submenu index="1" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-user-solid" style="color: rgb(32, 160, 255);"></i>员工资料</template>
 							<el-menu-item-group>
@@ -47,9 +47,7 @@
 								<el-menu-item index="3-2">
 									<router-link to="/staff" tag="li">员工套账设置</router-link>
 								</el-menu-item>
-								<el-menu-item index="3-3">
-									<router-link to="/salarylist" tag="li">工资表管理</router-link>
-								</el-menu-item>
+								<el-menu-item index="3-3">工资表管理</el-menu-item>
 								<el-menu-item index="3-4">月末处理</el-menu-item>
 								<el-menu-item index="3-5">工资表查询</el-menu-item>
 							</el-menu-item-group>
@@ -79,8 +77,10 @@
 				<el-main>
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 					  <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-					  <el-breadcrumb-item>主页</el-breadcrumb-item>
+					  <el-breadcrumb-item>工资表管理</el-breadcrumb-item>
 					</el-breadcrumb>
+					<list-word></list-word>
+					<div class="main">Main</div>
 				</el-main>
 			</el-container>
 			
@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import ListWord from './components/Listword'
 export default {
 	data() {
 		const item = {
@@ -99,7 +100,10 @@ export default {
 		return {
 			input:''
 		}
-	}
+	},
+	components: {
+			ListWord
+		}
 };
 </script>
 
@@ -163,21 +167,9 @@ body{
 .el-button--mini {
     padding: 6px 15px;
 }
-.function{
-	display: flex;
-	justify-content: space-between;
-	height: 30px;
-	line-height: 30px;
-}
-.function .data el-button{
-	padding: 6px 15px;
-} 
-.page{
-	display: flex;
-	justify-content: space-between;
-}
-.page_left{
-	line-height: 30px;
+.main{
+	text-align: center;
+	margin-top: 54px;
 }
 
 </style>

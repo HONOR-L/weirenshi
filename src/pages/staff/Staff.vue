@@ -20,7 +20,7 @@
 			</div>
 			<el-container style="min-height: 605px; border: 1px solid #eee">
 				<el-aside width="200px" style="background-color: #ececec;">
-					<el-menu :default-openeds="['', '']">
+					<el-menu :default-openeds="['3']">
 						<el-submenu index="1" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-user-solid" style="color: rgb(32, 160, 255);"></i>员工资料</template>
 							<el-menu-item-group>
@@ -44,9 +44,7 @@
 								<el-menu-item index="3-1">
 									<router-link to="/salary" tag="li">工资套账管理</router-link>
 								</el-menu-item>
-								<el-menu-item index="3-2">
-									<router-link to="/staff" tag="li">员工套账设置</router-link>
-								</el-menu-item>
+								<el-menu-item index="3-2">员工套账设置</el-menu-item>
 								<el-menu-item index="3-3">
 									<router-link to="/salarylist" tag="li">工资表管理</router-link>
 								</el-menu-item>
@@ -79,8 +77,9 @@
 				<el-main>
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 					  <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-					  <el-breadcrumb-item>主页</el-breadcrumb-item>
+					  <el-breadcrumb-item>员工套账设置</el-breadcrumb-item>
 					</el-breadcrumb>
+					<staff-word></staff-word>
 				</el-main>
 			</el-container>
 			
@@ -89,6 +88,7 @@
 </template>
 
 <script>
+import StaffWord from './components/Staffword'
 export default {
 	data() {
 		const item = {
@@ -99,6 +99,9 @@ export default {
 		return {
 			input:''
 		}
+	},
+	components: {
+		StaffWord
 	}
 };
 </script>

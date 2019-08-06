@@ -20,7 +20,7 @@
 			</div>
 			<el-container style="min-height: 605px; border: 1px solid #eee">
 				<el-aside width="200px" style="background-color: #ececec;">
-					<el-menu :default-openeds="['', '']">
+					<el-menu :default-openeds="['3']">
 						<el-submenu index="1" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-user-solid" style="color: rgb(32, 160, 255);"></i>员工资料</template>
 							<el-menu-item-group>
@@ -42,14 +42,12 @@
 							<template slot="title"><i class="el-icon-s-marketing" style="color: rgb(32, 160, 255);"></i>薪资管理</template>
 							<el-menu-item-group>
 								<el-menu-item index="3-1">
-									<router-link to="/salary" tag="li">工资套账管理</router-link>
+									工资套账管理
 								</el-menu-item>
 								<el-menu-item index="3-2">
 									<router-link to="/staff" tag="li">员工套账设置</router-link>
 								</el-menu-item>
-								<el-menu-item index="3-3">
-									<router-link to="/salarylist" tag="li">工资表管理</router-link>
-								</el-menu-item>
+								<el-menu-item index="3-3">工资表管理</el-menu-item>
 								<el-menu-item index="3-4">月末处理</el-menu-item>
 								<el-menu-item index="3-5">工资表查询</el-menu-item>
 							</el-menu-item-group>
@@ -79,8 +77,20 @@
 				<el-main>
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 					  <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-					  <el-breadcrumb-item>主页</el-breadcrumb-item>
+					  <el-breadcrumb-item>工资账套管理</el-breadcrumb-item>
 					</el-breadcrumb>
+					<div class="function">
+						<div class="add">
+							<el-button type="primary" icon="el-icon-plus" size="small">添加账套</el-button>
+						</div>
+						<div class="refresh">
+							<el-button type="success" icon="el-icon-refresh" size="small"></el-button>
+						</div>
+					</div>
+					<salary-word></salary-word>
+					<div class="del">
+						<el-button type="danger" round size="small">批量删除</el-button>
+					</div>
 				</el-main>
 			</el-container>
 			
@@ -89,6 +99,7 @@
 </template>
 
 <script>
+import SalaryWord from './components/Salaryword'
 export default {
 	data() {
 		const item = {
@@ -99,6 +110,9 @@ export default {
 		return {
 			input:''
 		}
+	},
+	components: {
+		SalaryWord,
 	}
 };
 </script>
@@ -169,15 +183,7 @@ body{
 	height: 30px;
 	line-height: 30px;
 }
-.function .data el-button{
-	padding: 6px 15px;
-} 
-.page{
-	display: flex;
-	justify-content: space-between;
+.del{
+	margin-top: 15px;
 }
-.page_left{
-	line-height: 30px;
-}
-
 </style>

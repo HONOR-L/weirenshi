@@ -36,7 +36,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 *{
 	margin: 0;
 	padding: 0;
@@ -84,6 +84,7 @@ form #username:hover,#password:hover{
 .el-button{
 	width: 350px;
 	margin-top: 39px;
+	padding: 10px 0;
 }
 
 </style>

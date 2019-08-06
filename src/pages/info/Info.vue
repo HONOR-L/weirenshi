@@ -20,7 +20,7 @@
 			</div>
 			<el-container style="min-height: 605px; border: 1px solid #eee">
 				<el-aside width="200px" style="background-color: #ececec;">
-					<el-menu :default-openeds="['', '']">
+					<el-menu :default-openeds="['5']">
 						<el-submenu index="1" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-user-solid" style="color: rgb(32, 160, 255);"></i>员工资料</template>
 							<el-menu-item-group>
@@ -66,7 +66,7 @@
 						<el-submenu index="5" style="background: #ececec;">
 							<template slot="title"><i class="el-icon-menu" style="color: rgb(32, 160, 255);"></i>系统管理</template>
 							<el-menu-item-group>
-								<el-menu-item index="5-1">基本信息先设置</el-menu-item>
+								<el-menu-item index="5-1">基本信息设置</el-menu-item>
 								<el-menu-item index="5-2">系统管理</el-menu-item>
 								<el-menu-item index="5-3">操作日志设置</el-menu-item>
 								<el-menu-item index="5-4">操作员管理</el-menu-item>
@@ -79,16 +79,19 @@
 				<el-main>
 					<el-breadcrumb separator-class="el-icon-arrow-right">
 					  <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-					  <el-breadcrumb-item>主页</el-breadcrumb-item>
+					  <el-breadcrumb-item>基础信息设置</el-breadcrumb-item>
 					</el-breadcrumb>
+					<info-word></info-word>
 				</el-main>
 			</el-container>
-			
+			{{yi}}
 		</div>
 	</div>
 </template>
 
 <script>
+import axios from 'axios'
+import InfoWord from './components/Infoword'
 export default {
 	data() {
 		const item = {
@@ -97,10 +100,27 @@ export default {
 			address: '上海市普陀区金沙江路 1518 弄'
 		};
 		return {
-			input:''
+			input:'',
+			yi:[],
 		}
+	},
+	components: {
+		InfoWord
+	},
+	methods:{
+		getdata() {
+			axios.get('/api/tutorial/datagrid/datagrid24_getdata.php')
+			.then(this.getdatassr)
+		},
+		getdatassr(res){
+				const data = res.data
+				this.yi = data
+		}
+	},
+	mounted() {
+		this.getdata()
 	}
-};
+}
 </script>
 
 
@@ -163,21 +183,4 @@ body{
 .el-button--mini {
     padding: 6px 15px;
 }
-.function{
-	display: flex;
-	justify-content: space-between;
-	height: 30px;
-	line-height: 30px;
-}
-.function .data el-button{
-	padding: 6px 15px;
-} 
-.page{
-	display: flex;
-	justify-content: space-between;
-}
-.page_left{
-	line-height: 30px;
-}
-
 </style>
